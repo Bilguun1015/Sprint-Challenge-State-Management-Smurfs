@@ -38,7 +38,7 @@ const initialState = {
       case NEW_SMURF_ADDED :
         return {
           ...state,
-          isLoading:false,
+          isLoading: false,
           error: '',
         }
       case NEW_SMURF_ADDED_SUCCESS:
