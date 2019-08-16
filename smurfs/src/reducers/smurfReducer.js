@@ -3,12 +3,15 @@ import {
   FETCH_SMURF_DATA_SUCCESS,  
   FETCH_SMURF_DATA_FAILURE,
   NEW_SMURF_ADDED,
+  NEW_SMURF_ADDED_SUCCESS,
+  NEW_SMURF_ADDED_FAILURE,
   TOGGLE_SMURFS
 } from '../actions';
 
 const initialState = {
     smurfs: [],
     isLoading: false,
+    isEditing: false,
     error: ''
   };
   
@@ -27,13 +30,29 @@ const initialState = {
           smurfs: action.payload,
           error: ''
         }
-      case NEW_SMURF_ADDED:
+      case FETCH_SMURF_DATA_FAILURE :
+        return {
+          ...state,
+          error: action.payload
+        }
+      case NEW_SMURF_ADDED :
+        return {
+          ...state,
+          isLoading:false,
+          error: '',
+        }
+      case NEW_SMURF_ADDED_SUCCESS:
         return {
           ...state,
           isLoading: false,
           smurfs: [...state.smurfs, action.payload],
           error: ''
         }
+        case NEW_SMURF_ADDED_FAILURE :
+            return {
+              ...state,
+              error: action.payload
+            }
       case TOGGLE_SMURFS:
         return {
           ...state,
